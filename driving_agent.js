@@ -207,6 +207,7 @@ function openFullscreen(){
     function handleClientLoad() {
         gapi.load('client:auth2', ()=>{
           gapi.client.init({
+            apiKey: API_KEY,
             clientId: CLIENT_ID,
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES
