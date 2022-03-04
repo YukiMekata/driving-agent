@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8"/>
+
+<head>
+  <style>
+    body {
+      color: white;
+      background-color: gray;
+      top: 10px;
+    }
+
+    button {
+    background-color: Black;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 5px;
+    }
+
+    button:hover {
+    background-color: red;
+    color: black;
+    }
+
+    div.absolute {
+      position: absolute;
+      top: 5px;
+      left: 750px;
+
+    }
+
+    .boxed {
+      border: 5px solid red ;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      height: 10px;
+      width: 125px;
+      border-radius: 5px;
+      background: #FFFFFF;
+      outline: none;
+      opacity: 1;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+
+    }
+
+    .slider::-moz-range-thumb {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 20%;
+      left: 38%;
+    }
+
+    .buttons {
+      margin: 0;
+      position: absolute;
+      left: 630px;
+    }
+
+    .save {
+      background: #008DD8;
+    }
+
+    p.small{
+      line-height: 0.4;
+    }
+
+    #vid{
+      display: flex;
+      align-items: center;
+      cursor: none;
+      }
+
+    .box{
+        width: 600px;
+        padding: 10px 30px 25px 40px;
+        background-color: white;
+        color: black;
+        border-radius: 12px;
+    }
+
+    #bottom {
+      position: fixed;
+      bottom: 1px;
+      width: 50%;
+    }
+
+    #progress-bar {
+    background-color: #008DD8;
+    width: 0%;
+    /* Adjust with JavaScript */
+    height: 15px;
+    border-radius: 15px;
+    font-size: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <center>
+  <div id="id_input" class="box">
+    <h1>車載エージェントによる対話の評価実験</h1>
+    <form><font size="+1">
+      <label for="ss_id">あなたの情報を入力してください：</label><br>
+      
+      <label for="gender">性別</label>
+      <select id = "gender">
+        <option value = "">　　　　　　　　　　　</option>
+        <option value = "male">男</option>
+        <option value = "female">女</option>
+      </select><br>
+
+      <label for="age">年齢</label>
+      <input type="text" id="age_in" name="ss_id" value=""><br>
+      
+      <label for="driver">運転頻度</label>
+      <select id = "driver">
+        <option value = "">　　　　　　　　　　　</option>
+        <option value = "a">毎日30分程度</option>
+        <option value = "b">毎日2時間程度</option>
+        <option value = "c">毎日5時間以上</option>
+        <option value = "d">1週間に3~5回程度</option>
+        <option value = "e">1週間に1~2回程度</option>
+        <option value = "f">1か月に2~3回程度</option>
+        <option value = "g">1か月に1回程度</option>
+        <option value = "h">2か月に1回程度</option>
+        <option value = "i">3か月に1回程度</option>
+        <option value = "j">半年に1回程度</option>
+        <option value = "k">1年に1回程度</option>
+        <option value = "l">ほとんど運転しない</option>
+      </select><br><br>
+    </font>
+    </form>
+    <br>
+    <button onclick="check_id()"><font size="+1">次へ</font></button>
+  </div>
+
+  <div id="volume_input" class="box" style="display:none">
+    <h1>車載エージェントによる対話の評価実験</h1>
+    <h2>音量調整</h2>
+    <p style="text-align:left">
+      <b>実験の途中で音量は変えないでください。</b><br>
+      以下の音声が快適に聞こえるように音量を調整してください。<br>
+      調整が終わったら、音量を入力してください。<br>
+    </p>
+      <button onclick="play()">音声を聞く</button><br>
+
+      <label>音量：</label>
+      <input type="number" min="1," step="1," id="volume">
+    <video id="test" src="" width="0" controls></video>
+    <br><br><br>
+    <button onclick="check_sound()" type="submit"><font size="+1">START</font></button>
+  </div>
+
+  <div id="volume_check" class="box" style='display:none'>
+    <h1>車載エージェントによる対話の評価実験</h1>
+    <h2>音量調整</h2>
+    <p>前回使用した音量は
+      <p id="vol" style="font-size:25px;">nothing</p>
+      でした。実験の途中では音量を変えないでください。<br>
+      今回も同じ音量に設定されているかどうかを確認してください。
+    </p>
+  <button onclick="start()"><font size="+1">START</font></button>
+  </div>
+  </center>
+
+    <video id="vid" autoplay src="" style="display:none" width="1400" height="800" controlsList="nodownload"></video>
+    <form id="eval" style="display:none">
+      <div class="absolute">
+      <p style="color:#FFCCCC;" align=center class="small"><b><font size="+1">この生活家電のCMから、この家電に対して、どのような体験をイメージしますか？</font></b></p>
+      <table style="width:600px">
+        <tr>
+          <td style="text-align:left">
+            <label for="ux1">微笑ましく思う:</label>
+            <br>
+            <input type="range" id="ux1" name="ux1" min="0" max="6" value="0" class="slider" oninput="ux1_disp.value = ux1.value">
+            <output  id="ux1_disp" style="color:#CB472A;">未回答</output>
+            <br><br>
+            <label for="ux2">心の繋がりを感じる:</label>
+            <br>
+            <input type="range" id="ux2" name="ux2" min="0" max="6" value="0" class="slider" oninput="ux2_disp.value = ux2.value">
+            <output  id="ux2_disp" style="color:#CB472A;">未回答</output>
+            <br><br>
+            <label for="ux3">新しい自分に気づく:</label>
+            <br>
+            <input type="range" id="ux3" name="ux3" min="0" max="6" value="0" class="slider" oninput="ux3_disp.value = ux3.value">
+            <output  id="ux3_disp" style="color:#CB472A;">未回答</output>
+            <br><br>
+            <label for="ux4">分からなかったことが分かる:</label>
+            <br>
+            <input type="range" id="ux4" name="ux4" min="0" max="6" value="0" class="slider" oninput="ux4_disp.value = ux4.value">
+            <output  id="ux4_disp" style="color:#CB472A;">未回答</output>
+            <br><br>
+            <label for="ux5">過去のいい体験を想起できる:</label>
+            <br>
+            <input type="range" id="ux5" name="ux5" min="0" max="6" value="0" class="slider" oninput="ux5_disp.value = ux5.value">
+            <output  id="ux5_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux6">タイミングよくできる:</label>
+            <br>
+            <input type="range" id="ux6" name="ux6" min="0" max="6" value="0" class="slider" oninput="ux6_disp.value = ux6.value">
+            <output  id="ux6_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux7">誰かに褒められる:</label>
+            <br>
+            <input type="range" id="ux7" name="ux7" min="0" max="6" value="0" class="slider" oninput="ux7_disp.value = ux7.value">
+            <output  id="ux7_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux8">信頼して任せられる:</label>
+            <br>
+            <input type="range" id="ux8" name="ux8" min="0" max="6" value="0" class="slider" oninput="ux8_disp.value = ux8.value">
+            <output  id="ux8_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux9">簡単にできる・早くできる:</label>
+            <br>
+            <input type="range" id="ux9" name="ux9" min="0" max="6" value="0" class="slider" oninput="ux9_disp.value = ux9.value">
+            <output  id="ux9_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux10">整っていると感じる:</label>
+            <br>
+            <input type="range" id="ux10" name="ux10" min="0" max="6" value="0" class="slider" oninput="ux10_disp.value = ux10.value">
+            <output  id="ux10_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux11">向上心を駆り立てられる:</label>
+            <br>
+            <input type="range" id="ux11" name="ux11" min="0" max="6" value="0" class="slider" oninput="ux11_disp.value = ux11.value">
+            <output  id="ux11_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux12">未来のいい体験を想起できる:</label>
+            <br>
+            <input type="range" id="ux12" name="ux12" min="0" max="6" value="0" class="slider" oninput="ux12_disp.value = ux12.value">
+            <output  id="ux12_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux13">誰かを喜ばせることができる:</label>
+            <br>
+            <input type="range" id="ux13" name="ux13" min="0" max="6" value="0" class="slider" oninput="ux13_disp.value = ux13.value">
+            <output  id="ux13_disp" style="color:#CB472A;">未回答</output>
+            <br>
+        </td>
+
+          <td style="text-align:left">
+            <label for="ux14">上手にできる:</label>
+            <br>
+            <input type="range" id="ux14" name="ux14" min="0" max="6" value="0" class="slider" oninput="ux14_disp.value = ux14.value">
+            <output  id="ux14_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux15">視覚的美しさを感じる:</label>
+            <br>
+            <input type="range" id="ux15" name="ux15" min="0" max="6" value="0" class="slider" oninput="ux15_disp.value = ux15.value">
+            <output  id="ux15_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux16">聴覚的美しさを感じる:</label>
+            <br>
+            <input type="range" id="ux16" name="ux16" min="0" max="6" value="0" class="slider" oninput="ux16_disp.value = ux16.value">
+            <output  id="ux16_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux17">達成感を感じる:</label>
+            <br>
+            <input type="range" id="ux17" name="ux17" min="0" max="6" value="0" class="slider" oninput="ux17_disp.value = ux17.value">
+            <output  id="ux17_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux18">うまくなったと感じる:</label>
+            <br>
+            <input type="range" id="ux18" name="ux18" min="0" max="6" value="0" class="slider" oninput="ux18_disp.value = ux18.value">
+            <output  id="ux18_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux19">充実を感じる:</label>
+            <br>
+            <input type="range" id="ux19" name="ux19" min="0" max="6" value="0" class="slider" oninput="ux19_disp.value = ux19.value">
+            <output  id="ux19_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux20">集中できる:</label>
+            <br>
+            <input type="range" id="ux20" name="ux20" min="0" max="6" value="0" class="slider" oninput="ux20_disp.value = ux20.value">
+            <output  id="ux20_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux21">癒し・リラックスを感じる:</label>
+            <br>
+            <input type="range" id="ux21" name="ux21" min="0" max="6" value="0" class="slider" oninput="ux21_disp.value = ux21.value">
+            <output  id="ux21_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux22">爽やかだと感じる:</label>
+            <br>
+            <input type="range" id="ux22" name="ux22" min="0" max="6" value="0" class="slider" oninput="ux22_disp.value = ux22.value">
+            <output  id="ux22_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux23">量や程度がちょうど良い:</label>
+            <br>
+            <input type="range" id="ux23" name="ux23" min="0" max="6" value="0" class="slider" oninput="ux23_disp.value = ux23.value">
+            <output  id="ux23_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="ux24">非日常的な贅沢を感じる:</label>
+            <br>
+            <input type="range" id="ux24" name="ux24" min="0" max="6" value="0" class="slider" oninput="ux24_disp.value = ux24.value">
+            <output  id="ux24_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="extra1" style="color:#FFFFAA;">何の製品のCMかの分かりやすい:</label>
+            <br>
+            <input type="range" id="extra1" name="extra1" min="0" max="6" value="0" class="slider" oninput="extra1_disp.value = extra1.value">
+            <output  id="extra1_disp" style="color:#CB472A;">未回答</output><br><br>
+            <label for="extra2" style="color:#FFFFAA;">製品が魅力的だと感じる:</label>
+            <br>
+            <input type="range" id="extra2" name="extra2" min="0" max="6" value="0" class="slider" oninput="extra2_disp.value = extra2.value">
+            <output  id="extra2_disp" style="color:#CB472A;">未回答</output>
+          </td>
+        </tr>
+          </table>
+        </div>
+        <p>
+      <br>
+      この生活家電のCMから、この家電に対して、どのような体験をイメージしますか？<br>
+      ７段階評価（０〜６）で評価してください <br>
+      0: 想像できない<br>
+      2: やや想像できる<br>
+      4: だいぶ想像できる<br>
+      6: はっきり想像できる<br>
+      評価が0でも、必ず1回ボタンをクリックして、数値が右側に表示されるように動かしてください
+      </p>
+    </form>
+
+    <br>
+    <div class="buttons">
+    <button id="next" type="submit" onclick="check()" style="display:none"><font size="+2">次へ</font></button>
+    <br>
+    <button id="save" type="submit" onclick="check2()" style="display:none" class="save"><font size="+2">保存</font></button>
+  </div>
+
+  <center> <p id="thank"><font size="+2"></font></p> </center>
+
+  <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+
+  <div id="bottom" style="display:none">
+    <p id="prog">1 / 80</p>
+    <div id="progress-bar"></div>
+  </div>
+
+<div style="display:none">
+    <p id="data"></p>
+    <p id="finished_num"></p>
+    <p id="cm_order"></p>
+</div>
+
+  <script>
+  var elem = document.documentElement;
+
+  function openFullscreen(){
+    if(elem.requestFullscreen){
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen){
+      elem.webkitRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+    elem.mozRequestFullScreen();
+    }
+  }
+
+      var row = 0;
+      var vol = document.getElementById("vol");
+      var finished_num = document.getElementById("finished_num");
+      var cm_order = document.getElementById("cm_order");
+      var data = document.getElementById("data");
+      var volume_check = document.getElementById("volume_check");
+      var volume_input = document.getElementById("volume_input");
+      var id_input = document.getElementById("id_input");
+      var eval=document.getElementById("eval");
+      var test = document.getElementById("test");
+      var ss_id = document.getElementById("ss_id");
+
+    function check_id(){
+      if (document.getElementById('gender').value == ""){
+        alert("性別を選択してください");
+      } else if (age_in.value == ""){ 
+        alert("年齢を入力してください");
+      } else if (document.getElementById('driver').value == ""){ 
+        alert("運転頻度を選択してください");
+      } else {
+        check_in();
+        //id_input.style.display = 'none';
+      }
+    }
+
+    function check_in() {
+      var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
+      gapi.auth2.getAuthInstance().signIn();
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: spreadsheetId ,
+            range: 'Vol' // KALAU CUMA NAMA SHEET, DIA AMBIL SEMUA DATA
+        }).then((response) => {
+            var result = response.result;
+            var numRows = result.values ? result.values.length : 0;
+            console.log(`${numRows} rows retrieved.`);
+            // DATA ARRAY NYA ADA DI result.values MISAL MAU DIBACA
+            var finished = result.values[2]
+            if (finished == 80) {
+              alert("全ての動画の評価が終わりました。ありがとうございました！");
+            } else if (finished!=0) {
+                vol.innerHTML = result.values[4];
+                finished_num.innerHTML = finished;
+                volume_check.style.display='block';
+                i+=parseInt(finished_num.innerHTML);
+                width=i*5/4;
+              } else {
+                volume_input.style.display ='block';
+                test.src = result.values[0];
+              }
+            },function (error) {
+                alert("正しいIDを入力してください")
+                reloadPage();
+            });
+          }
+
+    function reloadPage(){
+      location.reload(true);
+    }
+
+    function get_link() {
+      var id = document.getElementById("ss_id");
+      var spreadsheetId = id.value;
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: spreadsheetId ,
+            range: 'cm_vid' // KALAU CUMA NAMA SHEET, DIA AMBIL SEMUA DATA
+        }).then((response) => {
+            var no_array = []
+            var link_array = []
+            var result = response.result;
+            var numRows = result.values ? result.values.length : 0;
+            console.log(`${numRows} rows retrieved.`);
+            for (x=1; x<numRows; x++) {
+              no_array.push(JSON.stringify(result.values[x][0]));
+              link_array.push(JSON.stringify(result.values[x][2]));
+            }
+            cm_order.innerHTML=link_array;
+            data.innerHTML=no_array;
+          });
+    }
+
+    var play_times = 0;
+
+    function play(){
+      test.play();
+      play_times ++;
+      }
+
+    function check_sound(){
+      var volume = document.getElementById("volume").value;
+      if (play_times==0){
+        alert("音量調整を行ってください");
+      } else if (volume == ""){
+        alert("音量を入力してください");
+      } else if (volume == 0){
+        alert("音量を上げてください");
+      } else {
+        vol.innerHTML = volume;
+        input_volume();
+        start();
+      }
+    }
+
+    function input_volume() {
+      var id = document.getElementById("ss_id");
+      var spreadsheetId = id.value;
+      var volume = document.getElementById("volume").value;
+      var body = {
+          values: [
+              [volume]
+          ]
+      };
+      gapi.client.sheets.spreadsheets.values.append({
+          spreadsheetId: spreadsheetId,
+          range: 'Vol', // INI NAMA SHEET YG BIASA DI BAWAH (DEFAULTNYA Sheet1)
+          valueInputOption: 'RAW', // INI IKUTIN AJA
+          resource: body
+      }).then((response) => {
+          var result = response.result;
+          console.log(`${result.updates.updatedCells} cells appended.`)
+      });
+      }
+
+    var vid = document.getElementById("vid");
+    vid.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    });
+
+    var next = document.getElementById("next");
+    var save = document.getElementById("save");
+    var i = 0;
+    var width = 0;
+    var prog = document.getElementById("prog");
+    var progressbar = document.getElementById("progress-bar");
+    var bottom = document.getElementById("bottom");
+
+    function start() {
+      get_link();
+      finished_num.innerHTML = i;
+      var test = document.getElementById("test");
+      test.pause();
+      volume_input.style.display ='none';
+      volume_check.style.display='none';
+      alert("実験が始まります");
+      openFullscreen()
+      setTimeout(function(){
+        var all_link = JSON.parse("["+cm_order.innerHTML+"]");
+        var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
+        vid.style.display='block';
+        vid.src = embed;
+        vid.onended = function() {
+          progplus();
+          bottom.style.display="block";
+          eval.style.display='block';
+          vid.width = '700';
+          vid.height = '400';
+          vid.controls = true;
+          vid.style.cursor="pointer";
+          vid.play();
+          next.style.display = "block";
+          save.style.display = "block";
+          }},5000)
+      }
+
+    function check(){
+        var output = document.getElementsByTagName("output");
+        var y=0;
+        for (x = 0; x<output.length; x++){
+          if (output[x].value=='未回答'){
+            y++;
+          }}
+        if (y==0){
+          i++;
+          save_file();
+          if (i==80) {
+              alert("全てのCMを評価していただき、ありがとうございました！");
+              close_file();
+          }
+          else {
+            nextVideo();
+          }
+        } else {
+            alert(y+'個の答えていない項目があります');
+          }
+      }
+
+    function check2(){
+          var output = document.getElementsByTagName("output");
+          var y=0;
+          for (x = 0; x<output.length; x++){
+            if (output[x].value=='未回答'){
+              y++;
+            }}
+          if (y==0){
+            i++;
+            save_file();
+            close_file();
+          }  else {
+              alert(y+'個の答えていない項目があります');
+            }
+        }
+
+        function progplus(){
+            width+=1*5/4;
+            prog.innerHTML= i+1+" / 80";
+            progressbar.style.width=width+"%"
+        }
+
+    function nextVideo() {
+        finished_num.innerHTML = i;
+        eval.reset()
+        eval.style.display='none';
+        next.style.display="none";
+        save.style.display="none";
+        bottom.style.display="none";
+        vid.pause()
+        vid.style.display='none';
+        setTimeout(function(){
+          openFullscreen()
+          var all_link = JSON.parse("["+cm_order.innerHTML+"]");
+          var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
+          vid.style.display='block';
+          vid.src = embed;
+          vid.width='1400';
+          vid.height='800';
+          vid.controls = false;
+          vid.style.cursor="none";
+          vid.play()
+        },5000)
+        vid.onended = function() {
+          progplus();
+          bottom.style.display="block";
+          eval.style.display='block';
+          vid.width='700';
+          vid.height='400';
+          vid.controls = true;
+          vid.style.cursor="pointer";
+          vid.play();
+          var finished_num = i;
+          var left_num = 80 - finished_num;
+          var next=document.getElementById("next");
+          if (left_num>0){
+            next.style.display="block";
+          }
+          var save=document.getElementById("save");
+          save.style.display="block";
+          openFullscreen()
+        }
+      }
+
+    function save_file() {
+        var cm_no_list = JSON.parse("["+data.innerHTML+"]");
+        var cm_no = cm_no_list[i-1];
+        var output = document.getElementsByTagName("output");
+        var data_array=[cm_no];
+        for (x = 0; x<output.length; x++){
+            data_array.push(output[x].value)
+          }
+        var body = {
+              values: [
+                  data_array
+              ]
+          };
+          // INI BUAT NAMBAHIN DATA KE SHEET NYA
+
+        var id = document.getElementById("ss_id");
+        var spreadsheetId = id.value;
+        var sheet_name = 'evaluation';
+        gapi.client.sheets.spreadsheets.values.append({
+            spreadsheetId: spreadsheetId,
+            range: sheet_name, // INI NAMA SHEET YG BIASA DI BAWAH (DEFAULTNYA Sheet1)
+            valueInputOption: 'RAW', // INI IKUTIN AJA
+            resource: body
+        }).then((response) => {
+            var result = response.result;
+            console.log(`${result.updates.updatedCells} cells appended.`)
+        });
+      }
+
+    function close_file() {
+        bottom.style.display="none";
+        eval.style.display='none';
+        next.style.display="none";
+        save.style.display="none";
+        vid.pause();
+        vid.style.display='none';
+        var finished_num = i;
+        var left_num = 80 - finished_num;
+        alert("お疲れ様です。ファイルを保存しました")
+        var thank = document.getElementById("thank");
+        if(left_num!=0){
+          thank.innerHTML="これまでは"+finished_num+"本のCMを評価していただき、ありがとうございます。<br /> 残りの"+left_num+"の評価をお待ちしております";
+        } else {
+          thank.innerHTML="全てのCMを評価していただき、ありがとうございました";
+        }
+      }
+
+
+      // 3 VALUE INI MUSTI DIUBAH SESUAI INSTRUKSI
+      var CLIENT_ID = '953234749-82036rtotjhqtj1skvchrjrqo3juof7n.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyAAxx5m050VfzQZ77vUPIAmwbU2OturxoE';
+      var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
+
+      // INI BUAT SHOW/HIDE TOMBOL2, KALO display=none ITU DI HIDE, KALO display=inline-block ITU DI SHOW
+      // DI APP HARUSNYA NGGA PERLU GINIAN
+      var authorizeButton = document.getElementById('authorize_button');
+
+      function updateSigninStatus(isSignedIn) {
+          if (isSignedIn) {
+              authorizeButton.style.display = 'none';
+          } else {
+              authorizeButton.style.display = 'inline-block';
+          }
+      }
+
+      // DARI SINI KE BAWAH JANGAN DIUBAH
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/spreadsheets";
+
+      function handleClientLoad() {
+          gapi.load('client:auth2', initClient);
+      }
+
+      function initClient() {
+          gapi.client.init({
+              apiKey: API_KEY,
+              clientId: CLIENT_ID,
+              discoveryDocs: DISCOVERY_DOCS,
+              scope: SCOPES
+          }).then(function () {
+              // Listen for sign-in state changes.
+              gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+              // Handle the initial sign-in state.
+              updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          }, function (error) {
+              console.log(error);
+          });
+      }
+
+      function handleAuthClick(event) {
+          gapi.auth2.getAuthInstance().signIn();
+      }
+
+      function handleSignoutClick(event) {
+          gapi.auth2.getAuthInstance().signOut();
+      }
+
+  </script>
+
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+
+</body>
+</html>
