@@ -43,7 +43,7 @@ function openFullscreen(){
     var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
       gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: spreadsheetId ,
-          range: 'cm_vid' // KALAU CUMA NAMA SHEET, DIA AMBIL SEMUA DATA
+          range: 'dr_mov'
       }).then((response) => {
           var no_array = []
           var link_array = []
