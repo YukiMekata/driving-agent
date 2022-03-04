@@ -200,32 +200,25 @@ function openFullscreen(){
     var SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 
     function handleClientLoad() {
-        gapi.load('client:auth2', ()=>{
+          gapi.load('client:auth2', initClient);
+      }
+
+      function initClient() {
           gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES
-          })  
-        });
-    }
+              apiKey: API_KEY,
+              clientId: CLIENT_ID,
+              discoveryDocs: DISCOVERY_DOCS,
+              scope: SCOPES
+          }).then(function () {
+              // Listen for sign-in state changes.
+              gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-    function initClient() {
-        gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES
-        }).then(function () {
-            // Listen for sign-in state changes.
-            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-            // Handle the initial sign-in state.
-            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        }, function (error) {
-            console.log(error);
-        });
-    }
+              // Handle the initial sign-in state.
+              updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          }, function (error) {
+              console.log(error);
+          });
+      }
 
     function handleAuthClick(event) {
         gapi.auth2.getAuthInstance().signIn();
