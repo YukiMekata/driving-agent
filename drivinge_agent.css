@@ -1,0 +1,111 @@
+body {
+color: white;
+background-color: gray;
+top: 10px;
+}
+
+button {
+background-color: Black;
+color: white;
+text-decoration: none;
+display: inline-block;
+padding: 8px 14px;
+border-radius: 5px;
+}
+
+button:hover {
+background-color: red;
+color: black;
+}
+
+div.absolute {
+position: absolute;
+top: 5px;
+left: 750px;
+
+}
+
+.boxed {
+border: 5px solid red ;
+}
+
+.slider {
+-webkit-appearance: none;
+height: 10px;
+width: 125px;
+border-radius: 5px;
+background: #FFFFFF;
+outline: none;
+opacity: 1;
+-webkit-transition: .2s;
+transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 15px;
+height: 15px;
+border-radius: 50%;
+background: #4CAF50;
+cursor: pointer;
+
+}
+
+.slider::-moz-range-thumb {
+width: 15px;
+height: 15px;
+border-radius: 50%;
+background: #4CAF50;
+cursor: pointer;
+}
+
+.center {
+margin: 0;
+position: absolute;
+top: 20%;
+left: 38%;
+}
+
+.buttons {
+margin: 0;
+position: absolute;
+left: 630px;
+}
+
+.save {
+background: #008DD8;
+}
+
+p.small{
+line-height: 0.4;
+}
+
+#vid{
+display: flex;
+align-items: center;
+cursor: none;
+}
+
+.box{
+    width: 600px;
+    padding: 10px 30px 25px 40px;
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+}
+
+#bottom {
+position: fixed;
+bottom: 1px;
+width: 50%;
+}
+
+#progress-bar {
+background-color: #008DD8;
+width: 0%;
+/* Adjust with JavaScript */
+height: 15px;
+border-radius: 15px;
+font-size: 15px;
+}
