@@ -87,8 +87,8 @@ function openFullscreen(){
         progplus();
         bottom.style.display="block";
         eval.style.display='block';
-        vid.width = '1920';
-        vid.height = '360';
+        vid.width = '1600';
+        vid.height = '900';
         vid.controls = true;
         vid.style.cursor="pointer";
         vid.play();
