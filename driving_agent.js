@@ -76,7 +76,7 @@ function openFullscreen(){
     get_link();
     finished_num.innerHTML = i;
     alert("実験が始まります");
-    openFullscreen()
+    //openFullscreen()
     setTimeout(function(){
       var all_link = JSON.parse("["+cm_order.innerHTML+"]");
       var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
