@@ -377,40 +377,16 @@
       } else if (document.getElementById('driver').value == ""){ 
         alert("運転頻度を選択してください");
       } else {
-        check_in();
+        var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
+        gapi.auth2.getAuthInstance().signIn();
+          gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: spreadsheetId ,
+            range: 'Vol' // KALAU CUMA NAMA SHEET, DIA AMBIL SEMUA DATA
+          })
+        start();
         //id_input.style.display = 'none';
       }
     }
-
-    function check_in() {
-      var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
-      gapi.auth2.getAuthInstance().signIn();
-        gapi.client.sheets.spreadsheets.values.get({
-            spreadsheetId: spreadsheetId ,
-            range: 'Vol' // KALAU CUMA NAMA SHEET, DIA AMBIL SEMUA DATA
-        }).then((response) => {
-            var result = response.result;
-            var numRows = result.values ? result.values.length : 0;
-            console.log(`${numRows} rows retrieved.`);
-            // DATA ARRAY NYA ADA DI result.values MISAL MAU DIBACA
-            var finished = result.values[2]
-            if (finished == 80) {
-              alert("全ての動画の評価が終わりました。ありがとうございました！");
-            } else if (finished!=0) {
-                vol.innerHTML = result.values[4];
-                finished_num.innerHTML = finished;
-                volume_check.style.display='block';
-                i+=parseInt(finished_num.innerHTML);
-                width=i*5/4;
-              } else {
-                volume_input.style.display ='block';
-                test.src = result.values[0];
-              }
-            },function (error) {
-                alert("正しいIDを入力してください")
-                reloadPage();
-            });
-          }
 
     function reloadPage(){
       location.reload(true);
