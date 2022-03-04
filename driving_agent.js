@@ -75,10 +75,6 @@ function openFullscreen(){
   function start() {
     get_link();
     finished_num.innerHTML = i;
-    var test = document.getElementById("test");
-    test.pause();
-    volume_input.style.display ='none';
-    volume_check.style.display='none';
     alert("実験が始まります");
     openFullscreen()
     setTimeout(function(){
