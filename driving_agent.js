@@ -20,6 +20,12 @@ function openFullscreen(){
     var test = document.getElementById("test");
     var ss_id = document.getElementById("ss_id");
 
+  function signup(){
+      var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
+      gapi.auth2.getAuthInstance().signIn();
+      id_input.style.display = 'box';
+  }
+
   function check_in(){
     if (document.getElementById('gender').value == ""){
       alert("性別を選択してください");
@@ -28,8 +34,6 @@ function openFullscreen(){
     } else if (document.getElementById('driver').value == ""){ 
       alert("運転頻度を選択してください");
     } else {
-      var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
-      gapi.auth2.getAuthInstance().signIn();
       start();
       id_input.style.display = 'none';
     }
