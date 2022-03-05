@@ -31,7 +31,7 @@ function openFullscreen(){
       var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
       gapi.auth2.getAuthInstance().signIn();
       start();
-      //id_input.style.display = 'none';
+      id_input.style.display = 'none';
     }
   }
 
@@ -76,7 +76,6 @@ function openFullscreen(){
     get_link();
     finished_num.innerHTML = i;
     alert("実験が始まります");
-    id_input.style.display = 'none';
     //openFullscreen()
     setTimeout(function(){
       var all_link = JSON.parse("["+cm_order.innerHTML+"]");
