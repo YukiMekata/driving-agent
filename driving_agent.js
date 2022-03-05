@@ -24,7 +24,7 @@ function openFullscreen(){
   function signup(){
       var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
       gapi.auth2.getAuthInstance().signIn();
-      id_input.style.display = 'block';
+      id_input.style.display = 'inline-block';
       init.style.display = 'none';
   }
 
