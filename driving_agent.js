@@ -86,6 +86,8 @@ function openFullscreen(){
     setTimeout(function(){
       var all_link = JSON.parse("["+cm_order.innerHTML+"]");
       var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
+      bottom.style.display="block";
+      eval.style.display='block';
       vid.style.display='block';
       vid.src = embed;
       vid.onended = function() {
