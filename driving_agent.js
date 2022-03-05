@@ -15,6 +15,7 @@ function openFullscreen(){
     var finished_num = document.getElementById("finished_num");
     var cm_order = document.getElementById("cm_order");
     var data = document.getElementById("data");
+    var init = document.getElementById("initialize");
     var id_input = document.getElementById("id_input");
     var eval=document.getElementById("eval");
     var test = document.getElementById("test");
@@ -24,6 +25,7 @@ function openFullscreen(){
       var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
       gapi.auth2.getAuthInstance().signIn();
       id_input.style.display = 'box';
+      init.style.display = 'none';
   }
 
   function check_in(){
