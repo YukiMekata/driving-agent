@@ -20,9 +20,8 @@ color: black;
 
 div.absolute {
 position: absolute;
-top: 100px;
+top: 10px;
 left: 750px;
-
 }
 
 .boxed {
@@ -78,7 +77,24 @@ background: #008DD8;
 }
 
 p.small{
-line-height: 0.4;
+line-height: 3;
+}
+
+.assessment{
+    position: absolute;
+    top: 500px;
+    left: 750px;
+}
+
+.answer{
+    display: inline-block;
+    width: 80%;
+    padding: 1em 0.5em;
+    line-height: 3;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    margin: 0.5em 0;
 }
 
 #vid{
