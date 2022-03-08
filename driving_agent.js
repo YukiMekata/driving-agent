@@ -108,7 +108,7 @@ function openFullscreen(){
 
   function check(){
       var answer = document.getElementsById("answer");
-      var discomfort = document.getElementsByName("q1");
+      var discomfort = document.getElementsById("q1");
       if (answer.value==''){
         alert("発話に対する返答を入力してください。");
       } else if (discomfort.value==''){
