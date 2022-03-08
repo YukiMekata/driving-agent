@@ -107,26 +107,16 @@ function openFullscreen(){
     }
 
   function check(){
-      var output = document.getElementsByTagName("output");
-      var y=0;
-      for (x = 0; x<output.length; x++){
-        if (output[x].value=='未回答'){
-          y++;
-        }}
-      if (y==0){
-        i++;
-        save_file();
-        if (i==80) {
-            alert("全てのCMを評価していただき、ありがとうございました！");
-            close_file();
-        }
-        else {
-          nextVideo();
-        }
+      var answer = document.getElementsById("answer");
+      var discomfort = document.getElementsByName("q1");
+      if (answer.value==''){
+        alert("発話に対する返答を入力してください。");
+      } else if (discomfort.value==''){
+        alert("違和感の有無を回答してください。");
       } else {
-          alert(y+'個の答えていない項目があります');
-        }
-    }
+        nextVideo();
+      }
+  }
 
   function check2(){
         var output = document.getElementsByTagName("output");
