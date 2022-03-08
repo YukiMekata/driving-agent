@@ -18,6 +18,12 @@ background-color: red;
 color: black;
 }
 
+movie{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
 div.absolute {
 position: absolute;
 top: 10px;
