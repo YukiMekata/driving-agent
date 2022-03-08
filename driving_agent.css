@@ -27,7 +27,7 @@ movie{
 div.absolute {
 position: absolute;
 top: 10px;
-left: 1000px;
+left: 1200px;
 }
 
 .boxed {
@@ -89,13 +89,13 @@ line-height: 3;
 .assessment{
     position: absolute;
     top: 400px;
-    left: 1000px;
+    left: 1200px;
 }
 
 .discomfort{
     position: absolute;
     top: 800px;
-    left: 1000px;
+    left: 1200px;
 }
 
 .answer{
