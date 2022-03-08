@@ -20,6 +20,7 @@ function openFullscreen(){
     var eval=document.getElementById("eval");
     var test = document.getElementById("test");
     var ss_id = document.getElementById("ss_id");
+    var mov = document.getElementById("mov");
 
   function signup(){
       var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
@@ -86,7 +87,7 @@ function openFullscreen(){
     setTimeout(function(){
       var all_link = JSON.parse("["+cm_order.innerHTML+"]");
       var embed = "https://drive.google.com/file/d/"+all_link[i];
-      bottom.style.display="block";
+      mov.style.display="block";
       eval.style.display='block';
       vid.style.display='block';
       vid.src = embed;
