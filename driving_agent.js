@@ -87,17 +87,17 @@ function openFullscreen(){
     setTimeout(function(){
       var all_link = JSON.parse("["+cm_order.innerHTML+"]");
       var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
-      //mov.style.display="block";
+      mov.style.display="block";
       eval.style.display='block';
-      vid.style.display='block';
+      vid.style.display="block";
       next.style.display = "block";
       vid.src = embed;
       vid.onended = function() {
         progplus();
         bottom.style.display="block";
         eval.style.display='block';
-        vid.width = '1600';
-        vid.height = '900';
+        vid.width = '1280';
+        vid.height = '960';
         vid.controls = true;
         vid.style.cursor="pointer";
         vid.play();
