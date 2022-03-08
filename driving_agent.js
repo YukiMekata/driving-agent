@@ -89,7 +89,8 @@ function openFullscreen(){
       var embed = "https://drive.google.com/file/d/"+all_link[i];
       mov.style.display="block";
       eval.style.display='block';
-      vid.style.display='block';
+      //vid.style.display='block';
+      next.style.display = "block";
       vid.src = embed;
       vid.onended = function() {
         progplus();
