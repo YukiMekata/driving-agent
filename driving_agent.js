@@ -102,9 +102,11 @@ function openFullscreen(){
         }},5000)
     }
 
+
+  var answer = document.getElementsById("answer");
+  var discomfort = document.getElementsById("q1");
+
   function check(){
-      var answer = document.getElementsById("answer");
-      var discomfort = document.getElementsById("q1");
       if (answer.value==''){
         alert("発話に対する返答を入力してください。");
       } else if (discomfort.value==''){
