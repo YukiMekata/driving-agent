@@ -102,8 +102,8 @@ function openFullscreen(){
     }
 
 
-  var answer = document.getElementsById("answer");
-  var discomfort = document.getElementsById("q1");
+  var answer = document.getElementById("answer");
+  var discomfort = document.getElementById("q1");
 
   function check(){
       if (answer.value==''){
