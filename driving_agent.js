@@ -103,12 +103,11 @@ function openFullscreen(){
 
 
   var answer = document.getElementById("answer");
-  var discomfort = document.getElementById("q1");
 
   function check(){
       if (answer.value==''){
         alert("発話に対する返答を入力してください。");
-      } else if (discomfort.value==''){
+      } else if (input[name=q1].value==''){
         alert("違和感の有無を回答してください。");
       } else {
         nextVideo();
