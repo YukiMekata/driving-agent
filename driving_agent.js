@@ -152,8 +152,8 @@ function openFullscreen(){
         var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
         vid.style.display='block';
         vid.src = embed;
-        vid.width='1400';
-        vid.height='800';
+        vid.width='1920';
+        vid.height='1440';
         vid.controls = false;
         vid.style.cursor="none";
         vid.play()
@@ -162,8 +162,8 @@ function openFullscreen(){
         progplus();
         //bottom.style.display="block";
         eval.style.display='block';
-        vid.width='700';
-        vid.height='400';
+        vid.width='1280';
+        vid.height='960';
         vid.controls = true;
         vid.style.cursor="pointer";
         var finished_num = i;
