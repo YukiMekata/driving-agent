@@ -142,8 +142,8 @@ function openFullscreen(){
       eval.reset()
       eval.style.display='none';
       next.style.display="none";
-      save.style.display="none";
-      bottom.style.display="none";
+      //save.style.display="none";
+      //bottom.style.display="none";
       vid.pause()
       vid.style.display='none';
       setTimeout(function(){
@@ -160,22 +160,21 @@ function openFullscreen(){
       },5000)
       vid.onended = function() {
         progplus();
-        bottom.style.display="block";
+        //bottom.style.display="block";
         eval.style.display='block';
         vid.width='700';
         vid.height='400';
         vid.controls = true;
         vid.style.cursor="pointer";
-        vid.play();
         var finished_num = i;
         var left_num = 80 - finished_num;
         var next=document.getElementById("next");
         if (left_num>0){
           next.style.display="block";
         }
-        var save=document.getElementById("save");
-        save.style.display="block";
-        openFullscreen()
+        //var save=document.getElementById("save");
+        //save.style.display="block";
+        //openFullscreen()
       }
     }
     
