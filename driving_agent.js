@@ -96,7 +96,6 @@ function openFullscreen(){
         vid.height = '960';
         vid.controls = true;
         vid.style.cursor="pointer";
-        vid.play();
         next.style.display = "block";
         //save.style.display = "block";
         }},5000)
