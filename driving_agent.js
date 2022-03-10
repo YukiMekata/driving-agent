@@ -184,6 +184,7 @@ function openFullscreen(){
       setTimeout(function(){
         //openFullscreen()
         var all_link = JSON.parse("["+mov_order.innerHTML+"]");
+        var conv = JSON.parse("["+conv_content.innerHTML+"]");
         var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
         vid.style.display='block';
         vid.src = embed;
@@ -197,6 +198,7 @@ function openFullscreen(){
         //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
+        converse.innerHTML = conv[i];
         vid.width='1280';
         vid.height='960';
         vid.controls = false;
