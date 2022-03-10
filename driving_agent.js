@@ -85,6 +85,7 @@ function openFullscreen(){
             conv_array.push(JSON.stringify(result.values[x][1]));
           }
           conv_content.innerHTML=conv_array;
+          console.log(conv_array);
         });
   }
 
@@ -146,7 +147,6 @@ function openFullscreen(){
         i++;
         nextVideo();
       }
-      console.log(`check`);
   }
 
   function check2(){
@@ -172,7 +172,6 @@ function openFullscreen(){
       }
 
   function nextVideo() {
-      console.log(`next`);
       finished_num.innerHTML = i;
       eval.reset()
       eval.style.display='none';
