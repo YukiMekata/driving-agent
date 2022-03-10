@@ -214,6 +214,7 @@ function openFullscreen(){
         var data_array=[
               [gen, age, prof, converse.innerHTML, answer.value, q1_ans]
         ];
+        console.log(data_array);
         var body = {
               values: [
                   data_array
@@ -229,7 +230,7 @@ function openFullscreen(){
             resource: body
         }).then((response) => {
             var result = response.result;
-            console.log(`${result.updates.updatedCells} cells appended.`)
+            console.log(`${result.updates.updatedCells} cells appended.`);
        });
     }
 
