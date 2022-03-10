@@ -216,9 +216,7 @@ function openFullscreen(){
         ];
         console.log(data_array);
         var body = {
-              values: [
-                  data_array
-              ]
+              values: data_array
           };
       
         var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
