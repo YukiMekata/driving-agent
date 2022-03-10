@@ -151,7 +151,7 @@ function openFullscreen(){
       vid.style.display='none';
       setTimeout(function(){
         //openFullscreen()
-        var all_link = JSON.parse("["+cm_order.innerHTML+"]");
+        var all_link = JSON.parse("["+mov_order.innerHTML+"]");
         var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
         vid.style.display='block';
         vid.src = embed;
