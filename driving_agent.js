@@ -85,7 +85,6 @@ function openFullscreen(){
             conv_array.push(JSON.stringify(result.values[x][1]));
           }
           conv_content.innerHTML=conv_array;
-          console.log(conv_array);
         });
   }
 
@@ -183,7 +182,6 @@ function openFullscreen(){
       setTimeout(function(){
         //openFullscreen()
         var all_link = JSON.parse("["+mov_order.innerHTML+"]");
-        var conv = JSON.parse("["+conv_content.innerHTML+"]");
         var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
         vid.style.display='block';
         vid.src = embed;
@@ -194,6 +192,7 @@ function openFullscreen(){
         vid.play()
       },5000)
       vid.onended = function() {
+        var conv = JSON.parse("["+conv_content.innerHTML+"]");
         //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
