@@ -13,7 +13,7 @@ function openFullscreen(){
     var row = 0;
     var vol = document.getElementById("vol");
     var finished_num = document.getElementById("finished_num");
-    var mov_order = document.getElementById("cm_order");
+    var mov_order = document.getElementById("mov_order");
     var data = document.getElementById("data");
     var init = document.getElementById("initialize");
     var id_input = document.getElementById("id_input");
