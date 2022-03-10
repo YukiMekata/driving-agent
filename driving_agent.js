@@ -13,7 +13,7 @@ function openFullscreen(){
     var row = 0;
     var vol = document.getElementById("vol");
     var finished_num = document.getElementById("finished_num");
-    var cm_order = document.getElementById("cm_order");
+    var mov_order = document.getElementById("cm_order");
     var data = document.getElementById("data");
     var init = document.getElementById("initialize");
     var id_input = document.getElementById("id_input");
@@ -60,7 +60,7 @@ function openFullscreen(){
             no_array.push(JSON.stringify(result.values[x][0]));
             link_array.push(JSON.stringify(result.values[x][2]));
           }
-          cm_order.innerHTML=link_array;
+          mov_order.innerHTML=link_array;
           data.innerHTML=no_array;
         });
   }
@@ -84,12 +84,12 @@ function openFullscreen(){
     alert("実験が始まります");
     //openFullscreen()
     setTimeout(function(){
-      var all_link = JSON.parse("["+cm_order.innerHTML+"]");
+      var all_link = JSON.parse("["+mov_order.innerHTML+"]");
       var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
       vid.style.display='block';
       vid.src = embed;
       vid.onended = function() {
-        progplus();
+        //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
         vid.width = '1280';
@@ -144,19 +144,19 @@ function openFullscreen(){
       vid.pause()
       vid.style.display='none';
       setTimeout(function(){
-        openFullscreen()
+        //openFullscreen()
         var all_link = JSON.parse("["+cm_order.innerHTML+"]");
         var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
         vid.style.display='block';
         vid.src = embed;
-        vid.width='1600';
-        vid.height='1200';
+        vid.width='1280';
+        vid.height='960';
         vid.controls = false;
         vid.style.cursor="none";
         vid.play()
       },5000)
       vid.onended = function() {
-        progplus();
+        //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
         vid.width='1280';
@@ -164,11 +164,8 @@ function openFullscreen(){
         vid.controls = true;
         vid.style.cursor="pointer";
         var finished_num = i;
-        var left_num = 80 - finished_num;
         var next=document.getElementById("next");
-        if (left_num>0){
-          next.style.display="block";
-        }
+        next.style.display="block";
         //var save=document.getElementById("save");
         //save.style.display="block";
         //openFullscreen()
