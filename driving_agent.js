@@ -30,6 +30,10 @@ function openFullscreen(){
       init.style.display = 'none';
   }
 
+  var gen = "";
+  var age = "";
+  var prof = "";
+
   function check_in(){
     if (document.getElementById('gender').value == ""){
       alert("性別を選択してください");
@@ -38,6 +42,9 @@ function openFullscreen(){
     } else if (document.getElementById('driver').value == ""){ 
       alert("運転頻度を選択してください");
     } else {
+      gen = document.getElementById('gender').value;
+      age = age_in.value;
+      prof = document.getElementById('driver').value;
       start();
       id_input.style.display = 'none';
     }
@@ -122,7 +129,7 @@ function openFullscreen(){
 
   var answer = document.getElementById("answer");
   let discomfort = document.getElementsByName('q1');
-  let len = discomfort.lenghth;
+  var q1_ans = 0;
 
   function check(){
       if (answer.value==''){
@@ -130,6 +137,12 @@ function openFullscreen(){
       } else if (!(discomfort[0].checked || discomfort[1].checked)){
         alert("違和感の有無を回答してください。")
       } else {
+        if (discomfort[0].checked) {
+          q1_ans = 1;
+        } else {
+          q1_ans = 0;
+        }
+        save_file();
         i++;
         nextVideo();
       }
@@ -197,6 +210,29 @@ function openFullscreen(){
       }
     }
     
+    function save_file() {
+        var data_array=[
+              [gen, age, prof, converse.innerHTML, answer.value, q1_ans]
+        ];
+        var body = {
+              values: [
+                  data_array
+              ]
+          };
+      
+        var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
+        var sheet_name = 'data';
+        gapi.client.sheets.spreadsheets.values.append({
+            spreadsheetId: spreadsheetId,
+            range: sheet_name,
+            valueInputOption: 'RAW',
+            resource: body
+        }).then((response) => {
+            var result = response.result;
+            console.log(`${result.updates.updatedCells} cells appended.`)
+       });
+    }
+
     var CLIENT_ID = '953234749-82036rtotjhqtj1skvchrjrqo3juof7n.apps.googleusercontent.com';
     var API_KEY = 'AIzaSyAAxx5m050VfzQZ77vUPIAmwbU2OturxoE';
     var spreadsheetId = '1hMVakKu0CUcER6yjud8ZabY4HMa0tGylLRUE87CfnEM';
