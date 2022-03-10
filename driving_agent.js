@@ -14,6 +14,8 @@ function openFullscreen(){
     var vol = document.getElementById("vol");
     var finished_num = document.getElementById("finished_num");
     var mov_order = document.getElementById("mov_order");
+    var conv_content = document.getElementById("conv_content");
+    var converse = document.getElementById("converse");
     var data = document.getElementById("data");
     var init = document.getElementById("initialize");
     var id_input = document.getElementById("id_input");
@@ -63,6 +65,20 @@ function openFullscreen(){
           mov_order.innerHTML=link_array;
           data.innerHTML=no_array;
         });
+      
+      gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: spreadsheetId ,
+          range: 'agent'
+      }).then((response) => {
+          var conv_array = []
+          var result = response.result;
+          var numRows = result.values ? result.values.length : 0;
+          console.log(`${numRows} rows retrieved.`);
+          for (x=1; x<numRows; x++) {
+            conv_array.push(JSON.stringify(result.values[x][1]));
+          }
+          conv_content.innerHTML=conv_array;
+        });
   }
 
   var vid = document.getElementById("vid");
@@ -85,6 +101,7 @@ function openFullscreen(){
     //openFullscreen()
     setTimeout(function(){
       var all_link = JSON.parse("["+mov_order.innerHTML+"]");
+      var conv = JSON.parse("["+conv_content.innerHTML+"]");
       var embed = "https://drive.google.com/uc?export=download&id="+all_link[i];
       vid.style.display='block';
       vid.src = embed;
@@ -92,6 +109,7 @@ function openFullscreen(){
         //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
+        converse.innerHTML = conv[i];
         vid.width = '1280';
         vid.height = '960';
         vid.controls = false;
