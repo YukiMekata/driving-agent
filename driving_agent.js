@@ -114,6 +114,7 @@ function openFullscreen(){
       } else {
         nextVideo();
       }
+      console.log(`check`);
   }
 
   function check2(){
@@ -139,6 +140,7 @@ function openFullscreen(){
       }
 
   function nextVideo() {
+      console.log(`next`);
       finished_num.innerHTML = i;
       eval.reset()
       eval.style.display='none';
