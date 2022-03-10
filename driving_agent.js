@@ -130,6 +130,7 @@ function openFullscreen(){
       } else if (!(discomfort[0].checked || discomfort[1].checked)){
         alert("違和感の有無を回答してください。")
       } else {
+        i++;
         nextVideo();
       }
       console.log(`check`);
