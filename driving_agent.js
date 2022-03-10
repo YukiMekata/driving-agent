@@ -94,7 +94,7 @@ function openFullscreen(){
         eval.style.display='block';
         vid.width = '1280';
         vid.height = '960';
-        vid.controls = true;
+        vid.controls = false;
         vid.style.cursor="pointer";
         next.style.display = "block";
         //save.style.display = "block";
@@ -167,7 +167,7 @@ function openFullscreen(){
         eval.style.display='block';
         vid.width='1280';
         vid.height='960';
-        vid.controls = true;
+        vid.controls = false;
         vid.style.cursor="pointer";
         var finished_num = i;
         var next=document.getElementById("next");
