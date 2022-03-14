@@ -95,8 +95,8 @@ function openFullscreen(){
 
   var next = document.getElementById("next");
   var save = document.getElementById("save");
-  var i = 0;
-  var j = 0;
+  var i = Math.floor(Math.random() * 30);
+  var j = Math.floor(Math.random() * 7);
   var width = 0;
   var prog = document.getElementById("prog");
   var progressbar = document.getElementById("progress-bar");
