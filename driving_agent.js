@@ -96,6 +96,7 @@ function openFullscreen(){
   var next = document.getElementById("next");
   var save = document.getElementById("save");
   var i = 0;
+  var j = 0;
   var width = 0;
   var prog = document.getElementById("prog");
   var progressbar = document.getElementById("progress-bar");
@@ -116,7 +117,7 @@ function openFullscreen(){
         //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
-        converse.innerHTML = conv[i];
+        converse.innerHTML = conv[j];
         vid.width = '1280';
         vid.height = '960';
         vid.controls = false;
@@ -143,7 +144,8 @@ function openFullscreen(){
           q1_ans = 0;
         }
         save_file();
-        i++;
+        i = (i + Math.floor(Math.random() * 29)) % 30;
+        j = (j + Math.floor(Math.random() * 6)) % 7;
         nextVideo();
       }
   }
@@ -156,7 +158,6 @@ function openFullscreen(){
             y++;
           }}
         if (y==0){
-          i++;
           save_file();
           close_file();
         }  else {
@@ -196,7 +197,7 @@ function openFullscreen(){
         //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
-        converse.innerHTML = conv[i];
+        converse.innerHTML = conv[j];
         vid.width='1280';
         vid.height='960';
         vid.controls = false;
