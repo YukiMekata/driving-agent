@@ -201,7 +201,7 @@ function openFullscreen(){
         //progplus();
         //bottom.style.display="block";
         eval.style.display='block';
-        converse.innerHTML = '${na}さん、' + conv[j];
+        converse.innerHTML = na + "さん、" + conv[j];
         vid.width='1280';
         vid.height='960';
         vid.controls = false;
