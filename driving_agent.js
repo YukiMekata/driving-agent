@@ -106,7 +106,7 @@ function openFullscreen(){
   var progressbar = document.getElementById("progress-bar");
   var bottom = document.getElementById("bottom");
 
-  const na = `name`;
+  const names = `name`;
 
   function start() {
     get_link();
