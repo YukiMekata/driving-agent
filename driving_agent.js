@@ -96,7 +96,7 @@ function openFullscreen(){
   var next = document.getElementById("next");
   var save = document.getElementById("save");
   var i = Math.floor(Math.random() * 30);
-  var j = Math.floor(Math.random() * 7);
+  var j = Math.floor(Math.random() * 80);
   var width = 0;
   var prog = document.getElementById("prog");
   var progressbar = document.getElementById("progress-bar");
@@ -145,7 +145,7 @@ function openFullscreen(){
         }
         save_file();
         i = (i + Math.floor(Math.random() * 29)) % 30;
-        j = (j + Math.floor(Math.random() * 6)) % 7;
+        j = (j + Math.floor(Math.random() * 79)) % 80;
         nextVideo();
       }
   }
