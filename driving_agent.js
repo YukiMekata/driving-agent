@@ -30,18 +30,22 @@ function openFullscreen(){
       init.style.display = 'none';
   }
 
+  var na = "";
   var gen = "";
   var age = "";
   var prof = "";
 
   function check_in(){
-    if (document.getElementById('gender').value == ""){
+    if (name_in.value == ""){
+      alert("名前を入力してください")
+    } else if (document.getElementById('gender').value == ""){
       alert("性別を選択してください");
     } else if (age_in.value == ""){ 
       alert("年齢を入力してください");
     } else if (document.getElementById('driver').value == ""){ 
       alert("運転頻度を選択してください");
     } else {
+      na = name_in.value;
       gen = document.getElementById('gender').value;
       age = age_in.value;
       prof = document.getElementById('driver').value;
