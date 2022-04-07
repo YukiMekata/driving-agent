@@ -176,6 +176,8 @@ function openFullscreen(){
           progressbar.style.width=width+"%"
       }
 
+  const na = `name`;
+
   function nextVideo() {
       finished_num.innerHTML = i;
       eval.reset()
