@@ -111,7 +111,6 @@ function openFullscreen(){
     finished_num.innerHTML = i;
     alert("実験が始まります");
     //openFullscreen()
-    j = 0;
     setTimeout(function(){
       var all_link = JSON.parse("["+mov_order.innerHTML+"]");
       var conv = JSON.parse("["+conv_content.innerHTML+"]");
