@@ -106,6 +106,8 @@ function openFullscreen(){
   var progressbar = document.getElementById("progress-bar");
   var bottom = document.getElementById("bottom");
 
+  const na = `name`;
+
   function start() {
     get_link();
     finished_num.innerHTML = i;
@@ -175,8 +177,6 @@ function openFullscreen(){
           prog.innerHTML= i+1+" / 80";
           progressbar.style.width=width+"%"
       }
-
-  const na = `name`;
 
   function nextVideo() {
       finished_num.innerHTML = i;
